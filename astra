@@ -1,2 +1,3 @@
 #!/bin/bash
-ruby astra.rb
+DIR="$(dirname "$(readlink -f "$0")")"
+ruby "$DIR/astra.rb"
