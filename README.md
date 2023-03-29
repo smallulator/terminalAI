@@ -14,20 +14,22 @@ To use this script, you need to have the following installed:
 
 Clone the repository:
 
-bash
-Copy code
+```Bash
 git clone https://github.com/smallulator/terminalAI.git
+```
+
 Navigate to the cloned repository:
 
-bash
-Copy code
+``` Bash
 cd terminalAI
-Create a file called api_key.txt and paste your OpenAI API key into it.
+```
+paste your OpenAI API key into it api_key.txt .
 
 Run the script:
 
-Copy code
-ruby astra
+```Bash
+astra
+```
 Enter a prompt when prompted by the script.
 
 ## How it Works
