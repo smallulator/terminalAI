@@ -1,16 +1,12 @@
 require 'net/http'
-require 'uri'
 require 'json'
-require 'pry'
 
-file = File.open('api_key.txt', 'r+')
-key = file.read.chomp
+key = ENV['OPENAI_API_KEY']
 
-if key.empty?
+unless key
   puts "You don't have OPEN_AI_KEY set"
-  puts 'Please enter the key:'
-  key = gets.chomp
-  file.write(key)
+  puts "Set is with `export OPENAI_API_KEY=xxxxxxxxxxx`"
+  exit
 end
 
 puts 'Enter prompt:'
@@ -32,6 +28,10 @@ response = Net::HTTP.start(url.hostname, url.port, use_ssl: true) do |http|
   http.request(request)
 end
 
-body = JSON.parse(response.body)
-content = body['choices'][0]['message']['content']
-puts content
+if response.code == '200'
+  body = JSON.parse(response.body)
+  answer = body['choices'][0]['message']['content']
+else
+  answer = "Could not get a proper response: code: #{}"
+end
+puts answer
